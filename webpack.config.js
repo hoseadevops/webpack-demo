@@ -4,19 +4,25 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 
 module.exports = {
+  mode: 'development',
   entry: {
     app: './src/index.js',
     print: './src/print.js'
   },
+  devtool: 'inline-source-map',
+  devServer: {
+    contentBase: './dist'
+  },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: '管理输出'
+      title: '开发'
     })
   ],
   output: {
     filename: '[name].main.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/'
   },
   module: {
     rules: [
